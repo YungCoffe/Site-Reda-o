@@ -25,7 +25,7 @@
             position: relative;
         }
 
-        /* Fundo com Detalhes */
+        /* Fundo com Detalhes (Parallax) */
         .background-details {
             position: absolute;
             top: 0;
@@ -51,6 +51,7 @@
 
         @keyframes move { from { transform: translateY(0); } to { transform: translateY(-1000px); } }
 
+        /* Marcas d'água */
         .bg-text {
             position: absolute;
             font-weight: 900;
@@ -74,7 +75,7 @@
             z-index: 10;
             display: flex;
             flex-direction: column;
-            gap: 15px; /* Espaçamento entre os botões */
+            gap: 15px;
         }
 
         .title {
@@ -89,10 +90,10 @@
         .subtitle {
             font-size: 1.1rem;
             color: #555;
-            margin-bottom: 20px; /* Reduzido para aproximar os botões */
+            margin-bottom: 20px;
         }
 
-        /* Botões Vermelhos Estilizados */
+        /* Botões Vermelhos */
         .btn-red {
             background: linear-gradient(180deg, #d32f2f 0%, #8b0000 100%);
             color: white;
@@ -105,25 +106,24 @@
             box-shadow: 0 5px 15px rgba(211, 47, 47, 0.3);
             transition: 0.3s;
             text-transform: uppercase;
-            width: 100%; /* Botões ocupam a largura do card */
-            text-decoration: none; /* Para o botão tutorial se for link */
+            width: 100%;
+            text-decoration: none;
             display: inline-block;
         }
 
         .btn-red:hover { transform: scale(1.05); filter: brightness(1.2); }
 
-        /* Estrutura Inferior */
+        /* Estrutura de Rodapé (Ajuda e Créditos) */
         .bottom-structure {
             position: absolute;
             bottom: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px; /* Espaço entre Ajuda e Créditos */
+            gap: 15px;
             z-index: 20;
         }
 
-        /* Botão de Ajuda e Seta */
         .help-container {
             display: flex;
             flex-direction: column;
@@ -162,7 +162,7 @@
             border-color: #ff2d55;
         }
 
-        /* Rodapé de Créditos */
+        /* Créditos Finais */
         .footer {
             color: rgba(255, 255, 255, 0.35);
             font-size: 0.8rem;
@@ -176,7 +176,7 @@
             color: rgba(255, 255, 255, 0.1);
         }
 
-        /* Toast */
+        /* Notificação (Toast) */
         #toast {
             visibility: hidden;
             background-color: #111;
@@ -208,8 +208,9 @@
             <span class="yung-span">YUNG</span> <span class="coffe-span">COFFE</span>
         </div>
         <div class="subtitle">Redação</div>
+        
         <button class="btn-red" onclick="copyAction()">COPIAR SCRIPT</button>
-        <a href="#" class="btn-red" id="btn-tutorial">TUTORIAL</a>
+        <a href="https://youtu.be/Dqfrr4ngL0Q" target="_blank" class="btn-red">TUTORIAL</a>
     </div>
 
     <div class="bottom-structure">
@@ -237,14 +238,6 @@
             t.className = "show";
             setTimeout(() => { t.className = ""; }, 2500);
         }
-
-        // Exemplo de ação para o botão Tutorial (pode mudar o link no HTML)
-        document.getElementById('btn-tutorial').addEventListener('click', function(e) {
-            if(this.getAttribute('href') === '#') {
-                e.preventDefault();
-                alert('Tutorial em breve!');
-            }
-        });
     </script>
 </body>
 </html>
