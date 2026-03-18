@@ -3,105 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yung Redação - Preview</title>
+    <title>Yung Redação - Acesso Sala do Futuro</title>
     <style>
+        /* Estilo Dark Moderno */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background-color: #0a0a0a;
+            color: #efefef;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
-            background-color: #f0f2f5;
             margin: 0;
+            overflow: hidden;
         }
 
-        .container {
+        .login-card {
+            background: #151515;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid #333;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            width: 90%;
+            max-width: 350px;
             text-align: center;
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            width: 80%;
-            max-width: 600px;
         }
 
-        /* Simulador do Editor da Plataforma */
-        .ql-editor {
-            border: 2px dashed #ccc;
-            padding: 20px;
-            min-height: 150px;
-            margin-top: 20px;
-            border-radius: 8px;
+        h2 { color: #ff416c; margin-bottom: 20px; text-transform: uppercase; font-size: 1.2rem; }
+
+        .input-group { margin-bottom: 15px; text-align: left; }
+        
+        label { display: block; font-size: 0.8rem; color: #888; margin-bottom: 5px; margin-left: 5px; }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            background: #222;
+            border: 1px solid #444;
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
             outline: none;
-            background: #fafafa;
+            transition: 0.3s;
         }
 
-        .ql-editor:focus {
-            border-color: #ff416c;
-            background: #fff;
+        input:focus { border-color: #ff4b2b; box-shadow: 0 0 8px rgba(255, 75, 43, 0.2); }
+
+        .ra-container { display: flex; gap: 5px; }
+        .ra-main { flex: 3; }
+        .ra-dig { flex: 1; text-align: center; }
+        .sp-tag { flex: 0.5; display: flex; align-items: center; font-weight: bold; color: #ff4b2b; }
+
+        #btn-inj {
+            margin-top: 20px;
+            background: linear-gradient(135deg, #ff4b2b, #ff416c);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+            border: none;
+            width: 100%;
         }
 
-        h1 { color: #333; }
-        p { color: #666; }
+        #btn-inj:active { transform: scale(0.95); opacity: 0.8; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Yung Redação</h1>
-        <p>Este é um simulador. O botão de injeção aparecerá fixo no rodapé.</p>
+    <div class="login-card">
+        <h2>Yung Acesso</h2>
         
-        <div class="ql-editor" contenteditable="true" placeholder="O texto aparecerá aqui..."></div>
+        <div class="input-group">
+            <label>RA + Dígito</label>
+            <div class="ra-container">
+                <input type="number" id="ra_num" class="ra-main" placeholder="Ex: 10987654">
+                <input type="text" id="ra_dig" class="ra-dig" placeholder="X" maxlength="1">
+                <div class="sp-tag">SP</div>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>Senha da Plataforma</label>
+            <input type="password" id="ra_pass" placeholder="••••••••">
+        </div>
+
+        <button id="btn-inj">Injetar na Plataforma</button>
     </div>
 
     <script>
-        // O código que você enviou adaptado para rodar no carregamento da página
-        (function(){
-            var b = document.createElement('div');
-            b.id = 'btn-inj';
-            b.innerHTML = 'INJETAR CONTEÚDO';
+        document.getElementById('btn-inj').onclick = function() {
+            const ra = document.getElementById('ra_num').value;
+            const dig = document.getElementById('ra_dig').value;
+            const pass = document.getElementById('ra_pass').value;
+            
+            if(!ra || !dig || !pass) {
+                alert("Preencha todos os campos!");
+                return;
+            }
 
-            /* Estilo Visual Profissional */
-            var style = 'position:fixed; bottom:30px; left:50%; transform:translateX(-50%); z-index:999999; ' +
-                        'background: linear-gradient(135deg, #ff4b2b, #ff416c); color:white; ' +
-                        'padding: 14px 40px; font-weight: 800; border-radius: 50px; ' +
-                        'box-shadow: 0 10px 20px rgba(255, 75, 43, 0.3); font-family: "Segoe UI", Tahoma, sans-serif; ' +
-                        'cursor:pointer; border: 2px solid rgba(255,255,255,0.2); transition: all 0.3s ease; ' +
-                        'text-transform: uppercase; letter-spacing: 1px; user-select: none;';
-            b.style = style;
+            const loginCompleto = ra + dig + "sp";
+            
+            // Pergunta o texto da redação
+            let textoRedacao = prompt("Texto para injeção (Yung Redação):");
+            
+            if(textoRedacao) {
+                // Procura o editor na página (Sala do Futuro costuma usar contenteditable)
+                const editor = document.querySelector('.ql-editor') || 
+                               document.querySelector('[contenteditable="true"]') || 
+                               document.querySelector('textarea');
 
-            /* Efeitos de Hover */
-            b.onmouseover = function() { 
-                this.style.transform = 'translateX(-50%) scale(1.05)'; 
-                this.style.boxShadow = '0 15px 25px rgba(255, 75, 43, 0.4)'; 
-            };
-            b.onmouseout = function() { 
-                this.style.transform = 'translateX(-50%) scale(1)'; 
-                this.style.boxShadow = '0 10px 20px rgba(255, 75, 43, 0.3)'; 
-            };
-
-            document.body.appendChild(b);
-
-            b.onclick = function(){
-                var t = prompt('yung redação');
-                if(!t) return;
-
-                // Tenta focar no editor simulado
-                var e = document.querySelector('.ql-editor');
-                
-                if(e){
-                    e.focus();
-                    document.execCommand('insertText', false, t);
-                    // Dispara o evento de input para o sistema entender que houve mudança
-                    e.dispatchEvent(new Event('input', { bubbles: true }));
-                    alert('Injetado com sucesso!');
+                if(editor) {
+                    editor.focus();
+                    // Se for um editor rico (Rich Text)
+                    if(editor.tagName !== 'TEXTAREA') {
+                        document.execCommand('insertText', false, textoRedacao);
+                    } else {
+                        // Se for um campo de texto simples
+                        editor.value = textoRedacao;
+                    }
+                    
+                    editor.dispatchEvent(new Event('input', { bubbles: true }));
+                    alert("Dados injetados com sucesso para " + loginCompleto);
                 } else {
-                    alert('Erro: Editor não encontrado.');
+                    alert("Erro: O editor de texto não foi encontrado na página aberta.");
                 }
-            };
-        })();
+            }
+        };
     </script>
 </body>
 </html>
-
