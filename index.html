@@ -302,6 +302,7 @@
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .link-item::before {
@@ -464,9 +465,9 @@
                 <span class="link-label"><span class="dot"></span>Discord</span>
                 <span class="link-url">discord.gg/platformdestroyer</span>
             </a>
-            <div class="link-item" style="cursor: pointer;" onclick="showTutorial()">
+            <div class="link-item" onclick="showUnavailable()">
                 <span class="link-label"><span class="dot"></span>Tutorial</span>
-                <span class="link-url">tutorial do yungcoffe</span>
+                <span class="link-url">indisponível</span>
             </div>
         </div>
     </div>
@@ -479,18 +480,20 @@
 
     <script>
         function copyAction() {
-            const script = `javascript:(function(){ alert('Bookmarklet Ativado!'); })();`;
+            const script = `javascript:(function(){     var b=document.getElementById('btn-inj');     if(b)b.remove();     b=document.createElement('div');     b.id='btn-inj';     b.innerHTML='INJETAR CONTEÚDO';          /* Novo Estilo Visual Profissional */     var style = 'position:fixed; bottom:30px; left:50%; transform:translateX(-50%); z-index:999999; ' +                 'background: linear-gradient(135deg, #ff4b2b, #ff416c); color:white; ' +                 'padding: 14px 40px; font-weight: 800; border-radius: 50px; ' +                 'box-shadow: 0 10px 20px rgba(255, 75, 43, 0.3); font-family: "Segoe UI", Tahoma, sans-serif; ' +                 'cursor:pointer; border: 2px solid rgba(255,255,255,0.2); transition: all 0.3s ease; ' +                 'text-transform: uppercase; letter-spacing: 1px; user-select: none;';     b.style = style;      /* Efeitos de Hover */     b.onmouseover = function() { this.style.transform = 'translateX(-50%) scale(1.05)'; this.style.boxShadow = '0 15px 25px rgba(255, 75, 43, 0.4)'; };     b.onmouseout = function() { this.style.transform = 'translateX(-50%) scale(1)'; this.style.boxShadow = '0 10px 20px rgba(255, 75, 43, 0.3)'; };      document.body.appendChild(b);      b.onclick=function(){         /* Mensagem personalizada: yung redação */         var t=prompt('yung redação');         if(!t) return;          var btnAdd = document.querySelector('button') && Array.from(document.querySelectorAll('button')).find(el => el.textContent.includes('Adicionar parágrafo'));         if(btnAdd) btnAdd.click();          setTimeout(function(){             var e=document.querySelector('.ql-editor') || document.querySelector('[contenteditable="true"]');             if(e){                 e.focus();                 document.execCommand('insertText', false, t);                 e.dispatchEvent(new Event('input', { bubbles: true }));                 alert('Injetado com sucesso!');             } else {                 alert('Erro: Abra um parágrafo no editor antes de injetar.');             }         }, 500);     }; })();`;
             navigator.clipboard.writeText(script).then(() => {
                 const t = document.getElementById("toast");
+                t.innerHTML = "Copiado com sucesso!";
+                t.style.color = "var(--accent-glow)";
                 t.className = "show";
                 setTimeout(() => { t.className = ""; }, 3000);
             });
         }
 
-        function showTutorial() {
+        function showUnavailable() {
             const t = document.getElementById("toast");
-            t.innerHTML = "Tutorial em breve!";
-            t.style.color = "#ec4899";
+            t.innerHTML = "indisponível";
+            t.style.color = "#ff416c";
             t.className = "show";
             setTimeout(() => { 
                 t.className = ""; 
