@@ -3,144 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yung x Coffee | Injector</title>
+    <title>Yung x Coffe | Injector</title>
     <style>
-        /* Estilização Geral */
+        /* Estilo Base */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         body {
-            background-color: #0f0c0b; /* Dark Coffee Background */
-            color: #f5f5f5;
+            background-color: #000000; /* Fundo Totalmente Preto */
+            color: white;
+            height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             overflow: hidden;
-            background: radial-gradient(circle at center, #2c1e14 0%, #0f0c0b 100%);
+            position: relative;
         }
 
-        /* Elementos Decorativos */
+        /* Estrelas e Detalhes de Fundo */
+        .stars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: 
+                radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0));
+            background-size: 200px 200px;
+            opacity: 0.4;
+        }
+
         .bg-text {
             position: absolute;
-            font-size: 10vw;
             font-weight: 900;
-            opacity: 0.03;
-            user-select: none;
-            z-index: 0;
             text-transform: uppercase;
+            opacity: 0.1;
+            z-index: 0;
+            user-select: none;
         }
 
-        .yung-bg { top: 10%; left: 5%; color: #ff4b2b; }
-        .coffee-bg { bottom: 10%; right: 5%; color: #6f4e37; }
+        .yung-bg { top: 15%; left: 10%; font-size: 5rem; color: #ff0000; }
+        .coffe-bg { bottom: 15%; right: 10%; font-size: 5rem; color: #8b4513; }
 
-        /* Card Principal */
-        .container {
-            position: relative;
-            z-index: 1;
+        /* Card Centralizado */
+        .main-card {
+            background: rgba(20, 20, 20, 0.8);
+            padding: 40px 60px;
+            border-radius: 40px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 50px 80px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+            z-index: 10;
         }
 
-        h1 {
+        .title {
             font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-weight: 800;
+            margin-bottom: 5px;
             letter-spacing: 2px;
         }
 
-        .highlight-yung { color: #ff416c; text-shadow: 0 0 15px rgba(255, 65, 108, 0.5); }
-        .highlight-coffee { color: #d4a373; text-shadow: 0 0 15px rgba(212, 163, 115, 0.5); }
+        .yung-text { color: #ff2d55; text-shadow: 0 0 10px rgba(255, 45, 85, 0.5); }
+        .coffe-text { color: #d4a373; }
 
-        p {
-            font-size: 0.9rem;
-            color: #aaa;
+        .subtitle {
+            font-size: 1rem;
+            color: #888;
             margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 1px;
         }
 
-        /* Botão de Cópia */
-        .copy-btn {
-            background: linear-gradient(135deg, #6f4e37, #2c1e14);
+        /* Botão Vermelho */
+        .btn-copy {
+            background: linear-gradient(180deg, #b30000 0%, #7a0000 100%);
             color: white;
-            border: 2px solid #d4a373;
-            padding: 18px 45px;
-            font-size: 1.1rem;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1rem;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(179, 0, 0, 0.4);
+            transition: 0.3s;
+            text-transform: uppercase;
         }
 
-        .copy-btn:hover {
+        .btn-copy:hover {
             transform: scale(1.05);
-            background: linear-gradient(135deg, #d4a373, #6f4e37);
-            box-shadow: 0 15px 30px rgba(212, 163, 115, 0.2);
+            box-shadow: 0 8px 25px rgba(179, 0, 0, 0.6);
         }
 
-        .copy-btn:active {
-            transform: scale(0.95);
+        /* Créditos no Rodapé */
+        .footer-credits {
+            position: absolute;
+            bottom: 30px;
+            color: #444;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
         }
 
-        /* Toast de Sucesso */
+        /* Toast de Notificação */
         #toast {
             visibility: hidden;
-            min-width: 250px;
-            background-color: #1a1a1a;
-            color: #d4a373;
+            background-color: #333;
+            color: #fff;
             text-align: center;
-            border-radius: 10px;
-            padding: 16px;
+            border-radius: 8px;
+            padding: 12px 24px;
             position: fixed;
-            z-index: 1;
+            z-index: 100;
             bottom: 50px;
-            font-weight: bold;
-            border: 1px solid #d4a373;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #ff0000;
         }
 
         #toast.show {
             visibility: visible;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadeInOut 2.5s;
         }
 
-        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 50px; opacity: 1;} }
-        @keyframes fadeout { from {bottom: 50px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+        @keyframes fadeInOut {
+            0% { opacity: 0; bottom: 30px; }
+            20% { opacity: 1; bottom: 50px; }
+            80% { opacity: 1; bottom: 50px; }
+            100% { opacity: 0; bottom: 30px; }
+        }
     </style>
 </head>
 <body>
 
+    <div class="stars-container"></div>
+    
     <div class="bg-text yung-bg">YUNG</div>
-    <div class="bg-text coffee-bg">COFFEE</div>
+    <div class="bg-text coffe-bg">COFFE</div>
 
-    <div class="container">
-        <h1><span class="highlight-yung">YUNG</span> <span class="highlight-coffee">COFFEE</span></h1>
-        <p>Injector Script Manager</p>
+    <div class="main-card">
+        <div class="title">
+            <span class="yung-text">YUNG</span> <span class="coffe-text">COFFE</span>
+        </div>
+        <div class="subtitle">Redação</div>
         
-        <button class="copy-btn" onclick="copyScript()">
-            COPIAR SCRIPT
-        </button>
+        <button class="btn-copy" onclick="copyToClipboard()">COPIAR SCRIPT</button>
     </div>
 
-    <div id="toast">Copiado com sucesso! ☕🔥</div>
+    <div class="footer-credits">
+        créditos: yungcoffe k4lleby
+    </div>
+
+    <div id="toast">Copiado com sucesso!</div>
 
     <script>
-        function copyScript() {
-            const script = `javascript:(function(){     var b=document.getElementById('btn-inj');     if(b)b.remove();     b=document.createElement('div');     b.id='btn-inj';     b.innerHTML='INJETAR CONTEÚDO';          /* Novo Estilo Visual Profissional */     var style = 'position:fixed; bottom:30px; left:50%; transform:translateX(-50%); z-index:999999; ' +                 'background: linear-gradient(135deg, #ff4b2b, #ff416c); color:white; ' +                 'padding: 14px 40px; font-weight: 800; border-radius: 50px; ' +                 'box-shadow: 0 10px 20px rgba(255, 75, 43, 0.3); font-family: "Segoe UI", Tahoma, sans-serif; ' +                 'cursor:pointer; border: 2px solid rgba(255,255,255,0.2); transition: all 0.3s ease; ' +                 'text-transform: uppercase; letter-spacing: 1px; user-select: none;';     b.style = style;      /* Efeitos de Hover */     b.onmouseover = function() { this.style.transform = 'translateX(-50%) scale(1.05)'; this.style.boxShadow = '0 15px 25px rgba(255, 75, 43, 0.4)'; };     b.onmouseout = function() { this.style.transform = 'translateX(-50%) scale(1)'; this.style.boxShadow = '0 10px 20px rgba(255, 75, 43, 0.3)'; };      document.body.appendChild(b);      b.onclick=function(){         /* Mensagem personalizada: yung redação */         var t=prompt('yung redação');         if(!t) return;          var btnAdd = document.querySelector('button') && Array.from(document.querySelectorAll('button')).find(el => el.textContent.includes('Adicionar parágrafo'));         if(btnAdd) btnAdd.click();          setTimeout(function(){             var e=document.querySelector('.ql-editor') || document.querySelector('[contenteditable="true"]');             if(e){                 e.focus();                 document.execCommand('insertText', false, t);                 e.dispatchEvent(new Event('input', { bubbles: true }));                 alert('Injetado com sucesso!');             } else {                 alert('Erro: Abra um parágrafo no editor antes de injetar.');             }         }, 500);     }; })();`;
+        function copyToClipboard() {
+            const script = `javascript:(function(){ var b=document.getElementById('btn-inj'); if(b)b.remove(); b=document.createElement('div'); b.id='btn-inj'; b.innerHTML='INJETAR CONTEÚDO'; var style = 'position:fixed; bottom:30px; left:50%; transform:translateX(-50%); z-index:999999; background: linear-gradient(135deg, #ff4b2b, #ff416c); color:white; padding: 14px 40px; font-weight: 800; border-radius: 50px; box-shadow: 0 10px 20px rgba(255, 75, 43, 0.3); font-family: "Segoe UI", Tahoma, sans-serif; cursor:pointer; border: 2px solid rgba(255,255,255,0.2); transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; user-select: none;'; b.style = style; b.onmouseover = function() { this.style.transform = 'translateX(-50%) scale(1.05)'; }; b.onmouseout = function() { this.style.transform = 'translateX(-50%) scale(1)'; }; document.body.appendChild(b); b.onclick=function(){ var t=prompt('yung redação'); if(!t) return; var btnAdd = document.querySelector('button') && Array.from(document.querySelectorAll('button')).find(el => el.textContent.includes('Adicionar parágrafo')); if(btnAdd) btnAdd.click(); setTimeout(function(){ var e=document.querySelector('.ql-editor') || document.querySelector('[contenteditable="true"]'); if(e){ e.focus(); document.execCommand('insertText', false, t); e.dispatchEvent(new Event('input', { bubbles: true })); alert('Injetado com sucesso!'); } else { alert('Erro: Abra um parágrafo no editor antes de injetar.'); } }, 500); }; })();`;
 
-            // Criar elemento temporário para copiar
             const el = document.createElement('textarea');
             el.value = script;
             document.body.appendChild(el);
@@ -148,10 +171,9 @@
             document.execCommand('copy');
             document.body.removeChild(el);
 
-            // Mostrar Toast
             const toast = document.getElementById("toast");
             toast.className = "show";
-            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+            setTimeout(() => { toast.className = ""; }, 2500);
         }
     </script>
 </body>
