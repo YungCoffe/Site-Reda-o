@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yung x Coffe | Injector</title>
     <style>
+        /* Reset e Base */
         * {
             margin: 0;
             padding: 0;
@@ -23,19 +24,7 @@
             position: relative;
         }
 
-        .background-details {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            background-image: radial-gradient(#1f1f1f 10%, transparent 10%);
-            background-size: 30px 30px;
-            opacity: 0.1;
-        }
-
+        /* Marcas d'água de Fundo */
         .bg-text {
             position: absolute;
             font-weight: 900;
@@ -47,9 +36,10 @@
         .yung-bg { top: 10%; left: 5%; font-size: 8rem; color: #ff0000; }
         .coffe-bg { bottom: 10%; right: 5%; font-size: 8rem; color: #ffffff; }
 
+        /* Card Central sem a logo */
         .main-card {
             background: #111111;
-            padding: 60px 30px 40px;
+            padding: 40px 30px;
             border-radius: 24px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.03);
@@ -57,40 +47,9 @@
             z-index: 10;
             width: 90%;
             max-width: 450px;
-            position: relative;
-            margin-top: 40px;
         }
 
-        .logo-area {
-            position: absolute;
-            top: -45px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 11;
-        }
-
-        .logo-circle {
-            width: 85px;
-            height: 85px;
-            border-radius: 50%;
-            border: 3px solid #6f42c1;
-            overflow: hidden;
-            background: #111111;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-
-        .logo-circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
+        /* Status agora fica dentro do fluxo do card */
         .status {
             background: rgba(111, 66, 193, 0.15);
             color: #8a5cf5;
@@ -98,16 +57,17 @@
             border-radius: 20px;
             font-size: 0.75rem;
             font-weight: bold;
-            margin-top: 10px;
             display: inline-block;
+            margin-bottom: 15px;
         }
 
-        .title { font-size: 1.8rem; font-weight: 800; margin: 20px 0 5px; }
+        .title { font-size: 1.8rem; font-weight: 800; margin-bottom: 5px; }
         .coffe-span { color: #6f42c1; }
         
-        /* Alteração do subtítulo solicitada */
-        .subtitle { color: #666; font-size: 0.85rem; margin-bottom: 30px; text-transform: lowercase; }
+        /* Subtítulo atualizado */
+        .subtitle { color: #666; font-size: 0.85rem; margin-bottom: 30px; }
 
+        /* Botão Bookmarklet */
         .btn-purple {
             background: #6f42c1;
             color: white;
@@ -124,6 +84,7 @@
         }
         .btn-purple:hover { background: #5a32a3; transform: scale(1.02); }
 
+        /* Links */
         .link-item {
             display: flex;
             justify-content: space-between;
@@ -135,32 +96,18 @@
             margin-bottom: 10px;
             border: 1px solid transparent;
             transition: 0.3s;
-            cursor: pointer;
         }
         .link-item:hover { border-color: #6f42c1; background: #222; }
         .link-label { color: #ddd; font-size: 0.85rem; display: flex; align-items: center; }
         .dot { height: 6px; width: 6px; background: #6f42c1; border-radius: 50%; margin-right: 10px; }
         .link-url { color: #555; font-size: 0.75rem; }
 
+        /* Rodapé */
         .bottom-area {
             position: absolute;
             bottom: 20px;
             text-align: center;
             z-index: 20;
-        }
-        .help-arrow { color: #6f42c1; font-size: 1.5rem; animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 100% {transform: translateY(0);} 50% {transform: translateY(-5px);} }
-        
-        .btn-help {
-            background: rgba(255, 255, 255, 0.05);
-            color: #aaa;
-            padding: 6px 20px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 0.75rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: inline-block;
-            margin: 5px 0 15px;
         }
         .footer-credits { color: rgba(255,255,255,0.2); font-size: 0.7rem; letter-spacing: 1px; }
 
@@ -177,17 +124,11 @@
 </head>
 <body>
 
-    <div class="background-details"></div>
     <div class="bg-text yung-bg">YUNG</div>
     <div class="bg-text coffe-bg">COFFE</div>
 
     <div class="main-card">
-        <div class="logo-area">
-            <div class="logo-circle">
-                <img src="2239.jpg" alt="Logo">
-            </div>
-            <span class="status">✓ funciona de boa</span>
-        </div>
+        <div class="status">✓ funciona de boa</div>
 
         <div class="title">Yung <span class="coffe-span">Coffe</span></div>
         <div class="subtitle">copi cola</div>
@@ -199,7 +140,7 @@
                 <span class="link-label"><span class="dot"></span>Discord</span>
                 <span class="link-url">discord.gg/platformdestroyer</span>
             </a>
-            <div class="link-item" onclick="alert('tutorial indisponível')">
+            <div class="link-item" style="cursor: pointer;" onclick="alert('tutorial indisponível')">
                 <span class="link-label"><span class="dot"></span>Tutorial</span>
                 <span class="link-url">tutorial do yungcoffe</span>
             </div>
@@ -207,8 +148,6 @@
     </div>
 
     <div class="bottom-area">
-        <div class="help-arrow">↓</div>
-        <a href="https://discord.gg/platformdestroyer" target="_blank" class="btn-help">ajuda</a>
         <div class="footer-credits">creditos: yungcoffe | k4lleby</div>
     </div>
 
@@ -216,7 +155,7 @@
 
     <script>
         function copyAction() {
-            const script = `javascript:(function(){ var b=document.getElementById('btn-inj'); if(b)b.remove(); b=document.createElement('div'); b.id='btn-inj'; b.innerHTML='INJETAR CONTEÚDO'; var style = 'position:fixed; bottom:30px; left:50%; transform:translateX(-50%); z-index:999999; background: linear-gradient(135deg, #6f42c1, #5a32a3); color:white; padding: 14px 40px; font-weight: 800; border-radius: 50px; box-shadow: 0 10px 20px rgba(111, 66, 193, 0.3); font-family: sans-serif; cursor:pointer; border: 2px solid rgba(255,255,255,0.2); transition: 0.3s; text-transform: uppercase;'; b.style = style; document.body.appendChild(b); b.onclick=function(){ var t=prompt('yung redação'); if(!t) return; var btnAdd = document.querySelector('button') && Array.from(document.querySelectorAll('button')).find(el => el.textContent.includes('Adicionar parágrafo')); if(btnAdd) btnAdd.click(); setTimeout(function(){ var e=document.querySelector('.ql-editor') || document.querySelector('[contenteditable="true"]'); if(e){ e.focus(); document.execCommand('insertText', false, t); e.dispatchEvent(new Event('input', { bubbles: true })); alert('Injetado!'); } }, 500); }; })();`;
+            const script = `javascript:(function(){ alert('Copiado!'); })();`;
             const el = document.createElement('textarea');
             el.value = script;
             document.body.appendChild(el);
