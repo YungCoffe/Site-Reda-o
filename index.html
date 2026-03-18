@@ -10,11 +10,11 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         body {
-            background-color: #000000; /* Fundo Totalmente Preto */
+            background-color: #000000;
             color: white;
             height: 100vh;
             display: flex;
@@ -25,7 +25,7 @@
             position: relative;
         }
 
-        /* Fundo com Detalhes Aprimorados */
+        /* Fundo com Detalhes */
         .background-details {
             position: absolute;
             top: 0;
@@ -34,79 +34,44 @@
             height: 100%;
             pointer-events: none;
             z-index: 1;
-            overflow: hidden;
         }
 
-        /* Camada de Parallax de Estrelas 1 */
-        .stars-1 {
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             background-image: 
                 radial-gradient(1px 1px at 10% 10%, #fff, transparent),
-                radial-gradient(1.5px 1.5px at 20% 40%, #fff, transparent),
-                radial-gradient(1px 1px at 50% 20%, #fff, transparent),
-                radial-gradient(1px 1px at 80% 30%, #fff, transparent),
-                radial-gradient(1.5px 1.5px at 90% 80%, #fff, transparent);
-            background-size: 300px 300px;
+                radial-gradient(1px 1px at 90% 90%, #fff, transparent),
+                radial-gradient(1.5px 1.5px at 50% 50%, #fff, transparent),
+                radial-gradient(1px 1px at 20% 80%, #d4a373, transparent);
+            background-size: 250px 250px;
             opacity: 0.3;
-            animation: stars-move 100s linear infinite;
+            animation: move 150s linear infinite;
         }
 
-        /* Camada de Parallax de Estrelas 2 (Pontos menores e mais lentos) */
-        .stars-2 {
-            background-image: 
-                radial-gradient(0.5px 0.5px at 15% 15%, #aaa, transparent),
-                radial-gradient(1px 1px at 30% 60%, #aaa, transparent),
-                radial-gradient(0.5px 0.5px at 60% 30%, #aaa, transparent);
-            background-size: 200px 200px;
-            opacity: 0.2;
-            animation: stars-move-slow 200s linear infinite;
-        }
+        @keyframes move { from { transform: translateY(0); } to { transform: translateY(-1000px); } }
 
-        /* Partículas flutuantes (Douradas/Café) */
-        .particles {
-            background-image: 
-                radial-gradient(2px 2px at 10% 20%, #d4a373, transparent),
-                radial-gradient(1px 1px at 80% 60%, #d4a373, transparent),
-                radial-gradient(2px 2px at 50% 80%, #d4a373, transparent);
-            background-size: 150px 150px;
-            opacity: 0.4;
-            animation: particles-float 50s linear infinite;
-        }
-
-        .background-layer {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-        }
-
-        /* Animações de Fundo */
-        @keyframes stars-move { from { transform: translate(0, 0); } to { transform: translate(-50px, -50px); } }
-        @keyframes stars-move-slow { from { transform: translate(0, 0); } to { transform: translate(-30px, -30px); } }
-        @keyframes particles-float { from { transform: translate(0, 0); } to { transform: translate(40px, 40px); } }
-
-        /* Marcas d'água com Aura */
         .bg-text {
             position: absolute;
             font-weight: 900;
             text-transform: uppercase;
-            opacity: 0.08; /* Levemente mais visível */
+            opacity: 0.05;
             z-index: 2;
             user-select: none;
-            letter-spacing: 2px;
         }
 
-        .yung-bg { top: 10%; left: 5%; font-size: 6rem; color: #ff0000; text-shadow: 0 0 20px rgba(255, 0, 0, 0.3); }
-        .coffe-bg { bottom: 15%; right: 5%; font-size: 6rem; color: #ffffff; text-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+        .yung-bg { top: 10%; left: 5%; font-size: 6rem; color: #ff0000; }
+        .coffe-bg { bottom: 15%; right: 5%; font-size: 6rem; color: #ffffff; }
 
         /* Card Central */
         .card {
-            background: rgba(10, 10, 10, 0.95); /* Levemente mais escuro */
+            background: rgba(10, 10, 10, 0.9);
             padding: 50px 70px;
             border-radius: 40px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.02);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+            box-shadow: 0 0 50px rgba(0,0,0,1);
             z-index: 10;
         }
 
@@ -114,20 +79,18 @@
             font-size: 2.8rem;
             font-weight: 800;
             margin-bottom: 2px;
-            letter-spacing: 2px;
         }
 
-        .yung-span { color: #ff2d55; text-shadow: 0 0 15px rgba(255, 45, 85, 0.4); }
-        .coffe-span { color: #d4a373; text-shadow: 0 0 15px rgba(212, 163, 115, 0.3); }
+        .yung-span { color: #ff2d55; }
+        .coffe-span { color: #d4a373; }
 
         .subtitle {
             font-size: 1.1rem;
-            color: #666;
+            color: #555;
             margin-bottom: 35px;
-            text-transform: none;
         }
 
-        /* Botão Vermelho Estilo Imagem */
+        /* Botão Principal */
         .btn-red {
             background: linear-gradient(180deg, #d32f2f 0%, #8b0000 100%);
             color: white;
@@ -138,65 +101,85 @@
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(211, 47, 47, 0.3);
-            transition: 0.3s ease;
+            transition: 0.3s;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        .btn-red:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 25px rgba(211, 47, 47, 0.5);
-            filter: brightness(1.1);
+        .btn-red:hover { transform: scale(1.05); filter: brightness(1.2); }
+
+        /* Botão de Ajuda e Seta */
+        .help-container {
+            position: absolute;
+            bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 20;
         }
 
-        /* Rodapé de Créditos */
+        .help-arrow {
+            color: #ff2d55;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-5px);}
+            60% {transform: translateY(-3px);}
+        }
+
+        .btn-help {
+            background: rgba(255, 255, 255, 0.05);
+            color: #aaa;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 20px;
+            font-size: 0.8rem;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .btn-help:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-color: #ff2d55;
+        }
+
+        /* Rodapé de Créditos Transparente */
         .footer {
             position: absolute;
-            bottom: 25px;
-            color: #333; /* Levemente mais escuro para não ofuscar o fundo */
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
+            bottom: 20px;
+            color: rgba(255, 255, 255, 0.15); /* Bem transparente */
+            font-size: 0.75rem;
+            letter-spacing: 1px;
             z-index: 10;
         }
 
-        /* Notificação de Sucesso */
+        /* Toast */
         #toast {
             visibility: hidden;
-            min-width: 200px;
             background-color: #111;
             color: #ff2d55;
-            text-align: center;
-            border-radius: 10px;
-            padding: 14px;
+            padding: 12px 25px;
             position: fixed;
-            z-index: 100;
-            bottom: 40px;
-            font-weight: bold;
+            bottom: 30px;
+            border-radius: 10px;
             border: 1px solid #333;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            font-weight: bold;
+            z-index: 100;
         }
 
-        #toast.show {
-            visibility: visible;
-            animation: bounceIn 0.5s, fadeOut 0.5s 2.5s;
-        }
-
-        @keyframes bounceIn {
-            0% { transform: scale(0.5); opacity: 0; }
-            70% { transform: scale(1.05); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        @keyframes fadeOut {
-            from { opacity: 1; } to { opacity: 0; }
-        }
+        #toast.show { visibility: visible; animation: fadeInOut 2.5s; }
+        @keyframes fadeInOut { 0% {opacity:0;} 20% {opacity:1;} 80% {opacity:1;} 100% {opacity:0;} }
     </style>
 </head>
 <body>
 
     <div class="background-details">
-        <div class="background-layer stars-1"></div>
-        <div class="background-layer stars-2"></div>
-        <div class="background-layer particles"></div>
+        <div class="stars"></div>
     </div>
     
     <div class="bg-text yung-bg">YUNG</div>
@@ -207,8 +190,12 @@
             <span class="yung-span">YUNG</span> <span class="coffe-span">COFFE</span>
         </div>
         <div class="subtitle">Redação</div>
-        
         <button class="btn-red" onclick="copyAction()">COPIAR SCRIPT</button>
+    </div>
+
+    <div class="help-container">
+        <div class="help-arrow">↓</div>
+        <a href="https://discord.gg/platformdestroyer" target="_blank" class="btn-help">AJUDA</a>
     </div>
 
     <div class="footer">
@@ -219,18 +206,16 @@
 
     <script>
         function copyAction() {
-            const scriptContent = `javascript:(function(){ var b=document.getElementById('btn-inj'); if(b)b.remove(); b=document.createElement('div'); b.id='btn-inj'; b.innerHTML='INJETAR CONTEÚDO'; var style = 'position:fixed; bottom:30px; left:50%; transform:translateX(-50%); z-index:999999; background: linear-gradient(135deg, #ff4b2b, #ff416c); color:white; padding: 14px 40px; font-weight: 800; border-radius: 50px; box-shadow: 0 10px 20px rgba(255, 75, 43, 0.3); font-family: "Segoe UI", Tahoma, sans-serif; cursor:pointer; border: 2px solid rgba(255,255,255,0.2); transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; user-select: none;'; b.style = style; b.onmouseover = function() { this.style.transform = 'translateX(-50%) scale(1.05)'; }; b.onmouseout = function() { this.style.transform = 'translateX(-50%) scale(1)'; }; document.body.appendChild(b); b.onclick=function(){ var t=prompt('yung redação'); if(!t) return; var btnAdd = document.querySelector('button') && Array.from(document.querySelectorAll('button')).find(el => el.textContent.includes('Adicionar parágrafo')); if(btnAdd) btnAdd.click(); setTimeout(function(){ var e=document.querySelector('.ql-editor') || document.querySelector('[contenteditable="true"]'); if(e){ e.focus(); document.execCommand('insertText', false, t); e.dispatchEvent(new Event('input', { bubbles: true })); alert('Injetado com sucesso!'); } else { alert('Erro: Abra um parágrafo no editor antes de injetar.'); } }, 500); }; })();`;
-
-            const tempInput = document.createElement('textarea');
-            tempInput.value = scriptContent;
-            document.body.appendChild(tempInput);
-            tempInput.select();
+            const script = `javascript:(function(){ var b=document.getElementById('btn-inj'); if(b)b.remove(); b=document.createElement('div'); b.id='btn-inj'; b.innerHTML='INJETAR CONTEÚDO'; var style = 'position:fixed; bottom:30px; left:50%; transform:translateX(-50%); z-index:999999; background: linear-gradient(135deg, #ff4b2b, #ff416c); color:white; padding: 14px 40px; font-weight: 800; border-radius: 50px; box-shadow: 0 10px 20px rgba(255, 75, 43, 0.3); font-family: "Segoe UI", Tahoma, sans-serif; cursor:pointer; border: 2px solid rgba(255,255,255,0.2); transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; user-select: none;'; b.style = style; b.onmouseover = function() { this.style.transform = 'translateX(-50%) scale(1.05)'; }; b.onmouseout = function() { this.style.transform = 'translateX(-50%) scale(1)'; }; document.body.appendChild(b); b.onclick=function(){ var t=prompt('yung redação'); if(!t) return; var btnAdd = document.querySelector('button') && Array.from(document.querySelectorAll('button')).find(el => el.textContent.includes('Adicionar parágrafo')); if(btnAdd) btnAdd.click(); setTimeout(function(){ var e=document.querySelector('.ql-editor') || document.querySelector('[contenteditable="true"]'); if(e){ e.focus(); document.execCommand('insertText', false, t); e.dispatchEvent(new Event('input', { bubbles: true })); alert('Injetado com sucesso!'); } else { alert('Erro: Abra um parágrafo no editor antes de injetar.'); } }, 500); }; })();`;
+            const el = document.createElement('textarea');
+            el.value = script;
+            document.body.appendChild(el);
+            el.select();
             document.execCommand('copy');
-            document.body.removeChild(tempInput);
-
-            const toast = document.getElementById("toast");
-            toast.className = "show";
-            setTimeout(() => { toast.className = ""; }, 3000);
+            document.body.removeChild(el);
+            const t = document.getElementById("toast");
+            t.className = "show";
+            setTimeout(() => { t.className = ""; }, 2500);
         }
     </script>
 </body>
